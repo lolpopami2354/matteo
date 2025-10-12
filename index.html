@@ -64,19 +64,27 @@
     p { text-align: center; }
     #errorMessage { margin-top: 10px; font-weight: bold; color: #FF0000; text-shadow: 0 0 5px #FF0000; }
 
-    /* Wormhole effect overlay */
+    /* Wormhole effect overlay with cosmic colors */
     #wormhole {
       position: fixed;
       top: 50%;
       left: 50%;
       width: 50px;
       height: 50px;
-      background: radial-gradient(circle, #00FFFF 0%, #000000 70%);
       border-radius: 50%;
       transform: translate(-50%, -50%) scale(0);
       transition: transform 1s ease-in-out;
       z-index: 9999;
       pointer-events: none;
+      background: radial-gradient(circle at 30% 30%, #8A2BE2, #00FF00, #FF00FF, #00FFFF, #4B0082);
+      animation: pulseColors 1s infinite alternate;
+    }
+
+    /* Pulsing color animation for wormhole */
+    @keyframes pulseColors {
+      0% { filter: hue-rotate(0deg) brightness(1); }
+      50% { filter: hue-rotate(90deg) brightness(1.2); }
+      100% { filter: hue-rotate(180deg) brightness(1); }
     }
   </style>
 </head>
@@ -122,7 +130,6 @@
 
       // Animate wormhole
       wormhole.style.transform = "translate(-50%, -50%) scale(50)";
-      wormhole.style.transition = "transform 1s ease-in-out";
 
       // After animation, open the game in iframe
       setTimeout(() => {
