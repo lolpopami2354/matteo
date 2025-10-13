@@ -58,7 +58,10 @@
       z-index: 1;
     }
 
-    button:hover { box-shadow: 0 0 15px #00FFFF, 0 0 30px #00FFFF inset; transform: scale(1.05); }
+    button:hover {
+      box-shadow: 0 0 15px #00FFFF, 0 0 30px #00FFFF inset;
+      transform: scale(1.05);
+    }
 
     h1 { margin-bottom: 20px; text-shadow: 0 0 10px #FF00FF, 0 0 20px #00FFFF; }
     p { text-align: center; }
@@ -80,7 +83,6 @@
       animation: pulseColors 1s infinite alternate;
     }
 
-    /* Pulsing color animation for wormhole */
     @keyframes pulseColors {
       0% { filter: hue-rotate(0deg) brightness(1); }
       50% { filter: hue-rotate(90deg) brightness(1.2); }
@@ -92,13 +94,15 @@
   <div id="passwordScreen">
     <h1>Enter Password</h1>
     <input type="password" id="passwordInput" placeholder="password please">
-    <button class="enter-btn" onclick="checkPassword()">Enter</button>
-    <p id="errorMessage" style="display: none;">Incorrect password. woop woop you are so 67 mid you skibbidy</p>
+    <button onclick="checkPassword()">Enter</button>
+    <p id="errorMessage" style="display: none;">
+      Incorrect password. woop woop you are so 67 mid you skibbidy
+    </p>
   </div>
 
   <div id="mainContent">
     <h1>🎉 Welcome to Bubba's Gramama!</h1>
-    <button id="launchBtn" class="my-button" onclick="launchWormhole()">Launch Game</button>
+    <button id="launchBtn" onclick="launchWormhole()">Launch Game</button>
     <p>Welcome. Please press the 'Launch Game' button to proceed.</p>
   </div>
 
@@ -109,7 +113,7 @@
     const correctPassword = "GramasHomeisGreat!423";
 
     function checkPassword() {
-      const input = document.getElementById("passwordInput").value;
+      const input = document.getElementById("passwordInput").value.trim();
       const error = document.getElementById("errorMessage");
       if (input === correctPassword) {
         document.getElementById("passwordScreen").style.display = "none";
@@ -123,25 +127,19 @@
       const wormhole = document.getElementById("wormhole");
       const btn = document.getElementById("launchBtn");
 
-      // Get button position
+      // Position wormhole at button
       const rect = btn.getBoundingClientRect();
       wormhole.style.top = rect.top + rect.height/2 + "px";
       wormhole.style.left = rect.left + rect.width/2 + "px";
 
-      // Animate wormhole
+      // Animate wormhole expansion
       wormhole.style.transform = "translate(-50%, -50%) scale(50)";
 
-      // After animation, open the game in iframe
+      // After animation, open new site and attempt to close this one
       setTimeout(() => {
-        const win = window.open();
-        const url = "https://lolpopami2354.github.io/test4/";
-        const iframe = win.document.createElement('iframe');
-        iframe.style.width = "100%";
-        iframe.style.height = "100%";
-        iframe.style.border = "none";
-        iframe.src = url;
-        win.document.body.style.margin = "0";
-        win.document.body.appendChild(iframe);
+        const newWindow = window.open("https://lolpopami2354.github.io/test4/", "_blank");
+        window.close(); // may be blocked depending on browser
+        if (newWindow) newWindow.focus();
       }, 1000);
     }
   </script>
