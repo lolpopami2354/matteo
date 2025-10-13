@@ -105,26 +105,45 @@
   <!-- Wormhole animation overlay -->
   <div id="wormhole"></div>
 
- <script>
-function launchWormhole() {
-  const wormhole = document.getElementById("wormhole");
-  const btn = document.getElementById("launchBtn");
+  <script>
+    const correctPassword = "GramasHomeisGreat!423";
 
-  // Get button position
-  const rect = btn.getBoundingClientRect();
-  wormhole.style.top = rect.top + rect.height/2 + "px";
-  wormhole.style.left = rect.left + rect.width/2 + "px";
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+      const error = document.getElementById("errorMessage");
+      if (input === correctPassword) {
+        document.getElementById("passwordScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "flex";
+      } else {
+        error.style.display = "block";
+      }
+    }
 
-  // Animate wormhole expansion
-  wormhole.style.transform = "translate(-50%, -50%) scale(50)";
+    function launchWormhole() {
+      const wormhole = document.getElementById("wormhole");
+      const btn = document.getElementById("launchBtn");
 
-  // After animation, open the new site and close the current one
-  setTimeout(() => {
-    const newWindow = window.open("https://lolpopami2354.github.io/test4/", "_blank");
-    window.close();
-    if (newWindow) newWindow.focus();
-  }, 1000);
-}
-</script>
+      // Get button position
+      const rect = btn.getBoundingClientRect();
+      wormhole.style.top = rect.top + rect.height/2 + "px";
+      wormhole.style.left = rect.left + rect.width/2 + "px";
+
+      // Animate wormhole
+      wormhole.style.transform = "translate(-50%, -50%) scale(50)";
+
+      // After animation, open the game in iframe
+      setTimeout(() => {
+        const win = window.open();
+        const url = "https://lolpopami2354.github.io/test4/";
+        const iframe = win.document.createElement('iframe');
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.border = "none";
+        iframe.src = url;
+        win.document.body.style.margin = "0";
+        win.document.body.appendChild(iframe);
+      }, 1000);
+    }
+  </script>
 </body>
 </html>
