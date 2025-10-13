@@ -105,48 +105,7 @@
   <!-- Wormhole animation overlay -->
   <div id="wormhole"></div>
 
-  <script>
-    const correctPassword = "GramasHomeisGreat!423";
-
-    function checkPassword() {
-      const input = document.getElementById("passwordInput").value;
-      const error = document.getElementById("errorMessage");
-      if (input === correctPassword) {
-        document.getElementById("passwordScreen").style.display = "none";
-        document.getElementById("mainContent").style.display = "flex";
-      } else {
-        error.style.display = "block";
-      }
-    }
-
-    function launchWormhole() {
-      const wormhole = document.getElementById("wormhole");
-      const btn = document.getElementById("launchBtn");
-
-      // Get button position
-      const rect = btn.getBoundingClientRect();
-      wormhole.style.top = rect.top + rect.height/2 + "px";
-      wormhole.style.left = rect.left + rect.width/2 + "px";
-
-      // Animate wormhole
-      wormhole.style.transform = "translate(-50%, -50%) scale(50)";
-
-      // After animation, open the game in iframe
-      setTimeout(() => {
-        const win = window.open();
-        const url = "https://lolpopami2354.github.io/test4/";
-        const iframe = win.document.createElement('iframe');
-        iframe.style.width = "100%";
-        iframe.style.height = "100%";
-        iframe.style.border = "none";
-        iframe.src = url;
-        win.document.body.style.margin = "0";
-        win.document.body.appendChild(iframe);
-      }, 1000);
-    }
-  </script>
-
-  <script>
+ <script>
 function launchWormhole() {
   const wormhole = document.getElementById("wormhole");
   const btn = document.getElementById("launchBtn");
@@ -161,15 +120,10 @@ function launchWormhole() {
 
   // After animation, open the new site and close the current one
   setTimeout(() => {
-    // Open new site in a new tab/window
     const newWindow = window.open("https://lolpopami2354.github.io/test4/", "_blank");
-
-    // Close the current page
     window.close();
-
-    // If the browser blocks closing, at least focus on the new window
     if (newWindow) newWindow.focus();
-  }, 1000); // 1 second matches the wormhole animation
+  }, 1000);
 }
 </script>
 </body>
