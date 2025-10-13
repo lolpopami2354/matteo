@@ -145,5 +145,32 @@
       }, 1000);
     }
   </script>
+
+  <script>
+function launchWormhole() {
+  const wormhole = document.getElementById("wormhole");
+  const btn = document.getElementById("launchBtn");
+
+  // Get button position
+  const rect = btn.getBoundingClientRect();
+  wormhole.style.top = rect.top + rect.height/2 + "px";
+  wormhole.style.left = rect.left + rect.width/2 + "px";
+
+  // Animate wormhole expansion
+  wormhole.style.transform = "translate(-50%, -50%) scale(50)";
+
+  // After animation, open the new site and close the current one
+  setTimeout(() => {
+    // Open new site in a new tab/window
+    const newWindow = window.open("https://lolpopami2354.github.io/test4/", "_blank");
+
+    // Close the current page
+    window.close();
+
+    // If the browser blocks closing, at least focus on the new window
+    if (newWindow) newWindow.focus();
+  }, 1000); // 1 second matches the wormhole animation
+}
+</script>
 </body>
 </html>
