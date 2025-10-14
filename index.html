@@ -137,9 +137,14 @@
 
       // After animation, open new site and attempt to close this one
       setTimeout(() => {
-        const newWindow = window.open("https://lolpopami2354.github.io/test4/", "_blank");
-        window.close(); // may be blocked depending on browser
-        if (newWindow) newWindow.focus();
+        var win = window.open()
+var url = "https://example.com"
+var iframe = win.document.createElement('iframe')
+iframe.style.width = "100%";
+iframe.style.height = "100%";
+iframe.style.border = "none";
+iframe.src = url
+win.document.body.appendChild(iframe)
       }, 1000);
     }
   </script>
